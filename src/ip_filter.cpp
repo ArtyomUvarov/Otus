@@ -108,7 +108,7 @@ int main(int argc, char const *argv[])
         for(string line; std::getline(shows_file, line);)
         {
           stringVector v = split(line, '\t');
-            ip_pool.push_back(split(v.at(0), '.'));
+            ip_pool.push_back( split(v.at(0), '.') );
         }
 
         // TODO reverse lexicographically sort
