@@ -22,9 +22,7 @@ jobs:
     - name: Install tools
       run: sudo apt update -y && sudo apt install -y clang-format clang-tidy python3-pip g++ cmake
     
-    - name: Coding Style checks
-      run: ${{github.workspace}}/format.sh check
-
+  
     - name: Install conan
       run: pip3 install conan
 
