@@ -13,7 +13,10 @@ class my_vector {
 public:
 void push_back(const T& x)
 {
-    if (size == capacity)
+  if (data == nullptr)
+    data = alloc.allocate(1);
+  
+    if ( size == capacity)
     {
         capacity = capacity * 2 + 1;
        // T* newData = ::operator new(capacity * sizeof(T));
@@ -22,8 +25,8 @@ void push_back(const T& x)
         std::swap(newData, data);
         alloc.deallocate(newData, capacity);
     }
-
-    alloc.construct(data + size * sizeof(T), x);
+    
+      alloc.construct(data + size * sizeof(T), x);
     ++size;
 }
 
@@ -34,7 +37,7 @@ const T& operator[] (size_t ind)  const {
 private:
     std::size_t size = 0;
     std::size_t capacity = 0;
-    T* data=nullptr;
+    T* data = nullptr;
 
     Allocator alloc;
 };
@@ -175,8 +178,11 @@ int main(int, char *[]) {
   my_vector<int> m2;
  // for (int i = 0; i < 9; ++i) 
     m2.push_back(5);
-  for (int i = 0; i < 9; ++i)
-    std::cout<<"m""["<<i<<"]"<<"="<<m2[i];
+    m2.push_back(4);
+    m2.push_back(3);
+    m2.push_back(2);
+  for (int i = 0; i < 4; ++i)
+    std::cout<<" m""["<<i<<"]"<<"="<<m2[i];
  
   /*   //why we need rebind
     MyList<int, std_03_allocator<int>> list;
